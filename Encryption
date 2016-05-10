@@ -1,0 +1,231 @@
+#!/bin/python
+
+import sys
+import string
+from math import sqrt, ceil, floor
+
+sent = raw_input().strip()
+sent = sent.translate(None, string.whitespace)
+length = len(sent)
+row = int(floor(sqrt(length)))
+col = int(ceil(sqrt(length)))
+x = []
+while len(sent) > 0:
+    x.append(sent[:col])
+    sent = sent.replace(sent[:col], '')
+
+for i in range(len(x)):
+    if len(x[i]) != col:
+        x[i] = x[i]+ " " * (col-len(x[i]))
+    
+out = map(''.join, zip(*x))
+print ' '.join([''.join(each).strip() for each in out])
+
+
+##//Home work
+##Python 2.7.9 (default, Dec 10 2014, 12:24:55) [MSC v.1500 32 bit (Intel)] on win32
+##Type "help", "copyright", "credits" or "license" for more information.
+##>>> a = '1'
+##>>>
+##>>> len(a)
+##1
+##>>> a[:1]
+##'1'
+##>>> a = '81'
+##>>> len(a)
+##2
+##>>> a[:2]
+##'81'
+##>>>
+##>>>
+##>>> len(a)/2
+##1
+##>>> a[:len(a)/2]
+##'8'
+##>>> a[len(a)/2:]
+##'1'
+##>>> 4879**2
+##23804641
+##>>> 2380+4641
+##7021
+##>>>
+##>>>
+##>>> floor(54)
+##Traceback (most recent call last):
+##  File "<stdin>", line 1, in <module>
+##NameError: name 'floor' is not defined
+##>>>
+##>>>
+##>>> from math import eil, floor
+##Traceback (most recent call last):
+##  File "<stdin>", line 1, in <module>
+##ImportError: cannot import name eil
+##>>> from math import ceil, floor
+##>>>
+##>>> floor(54)
+##54.0
+##>>> ceil(54)
+##54.0
+##>>>
+##>>> from math import sqrt
+##>>>
+##>>> sqrt(54)
+##7.3484692283495345
+##>>>
+##>>>
+##>>> floor(sqrt(54))
+##7.0
+##>>> ceil(sqrt(54))
+##8.0
+##>>> int(ceil(sqrt(54)))
+##8
+##>>>
+##>>>
+##>>> a = 'have a nice day'
+##>>> a.remove(' ')
+##Traceback (most recent call last):
+##  File "<stdin>", line 1, in <module>
+##AttributeError: 'str' object has no attribute 'remove'
+##>>>
+##>>>
+##>>>
+##>>>
+##>>> a
+##'have a nice day'
+##>>>
+##>>> a.translate(None, string.whitespace)
+##Traceback (most recent call last):
+##  File "<stdin>", line 1, in <module>
+##NameError: name 'string' is not defined
+##>>>
+##>>> import string
+##>>>
+##>>> a.translate(None, string.whitespace)
+##'haveaniceday'
+##>>>
+##>>> sent = 'whereis'
+##>>> sent.replace(sent[:3],'')
+##'reis'
+##>>> sent
+##'whereis'
+##>>> a = ['ifmanwas', 'meanttos', 'tayonthe', 'groundgo', 'dwouldha', 'vegivenu', 'sroots']
+##>>>
+##>>>
+##>>>
+##>>> for i in range(len(a)):
+##...     for j in range(a[i]):
+##...         zx
+##...
+##Traceback (most recent call last):
+##  File "<stdin>", line 2, in <module>
+##TypeError: range() integer end argument expected, got str.
+##>>>
+##>>>
+##>>>
+##>>>
+##>>> a = ''
+##>>> for i in range(len(a)):
+##...     for j in range(a[i]):as
+##  File "<stdin>", line 2
+##    for j in range(a[i]):as
+##                          ^
+##SyntaxError: invalid syntax
+##>>>
+##>>>
+##>>>
+##>>> a = ['ifmanwas', 'meanttos', 'tayonthe', 'groundgo', 'dwouldha', 'vegivenu', 'sroots']
+##>>>
+##>>>
+##>>> tot = ''
+##>>>
+##>>> for i in range(len(a)):
+##...     for j in range(a[i]):
+##...         tot = tot + a[i][j]
+##...     tot = tot + ' '
+##...
+##Traceback (most recent call last):
+##  File "<stdin>", line 2, in <module>
+##TypeError: range() integer end argument expected, got str.
+##>>>
+##>>>
+##>>>
+##>>> for i in range(len(a)):
+##...     for j in range(len(a[i])):
+##...         tot = tot + a[i][j]
+##...     tot = tot + ' '
+##...
+##>>> tot
+##'ifmanwas meanttos tayonthe groundgo dwouldha vegivenu sroots '
+##>>> tot = ''
+##>>> a
+##['ifmanwas', 'meanttos', 'tayonthe', 'groundgo', 'dwouldha', 'vegivenu', 'sroots']
+##>>>
+##>>> for i in a:
+##...     for j in a[i]:
+##...         print j
+##...
+##Traceback (most recent call last):
+##  File "<stdin>", line 2, in <module>
+##TypeError: list indices must be integers, not str
+##>>>
+##>>> for i in range(len(a)):
+##...     for j in range
+##  File "<stdin>", line 2
+##    for j in range
+##                 ^
+##SyntaxError: invalid syntax
+##>>>
+##>>>
+##>>>
+##>>> for i in range(len(a[1]):
+##  File "<stdin>", line 1
+##    for i in range(len(a[1]):
+##                            ^
+##SyntaxError: invalid syntax
+##>>>
+##>>>
+##>>> for i in range(len(a[1])):
+##...     for j in range(len(a)):
+##...         tot = tot +
+##  File "<stdin>", line 3
+##    tot = tot +
+##               ^
+##SyntaxError: invalid syntax
+##>>>
+##>>>
+##>>>
+##>>>
+##>>>
+##>>>
+##>>>
+##>>> tot
+##''
+##>>> for i in range(len(a[1])):
+##...     for j in range(len(a)):
+##...         tot = tot + a[j][i]
+##...     tot = tot + ' '
+##...
+##Traceback (most recent call last):
+##  File "<stdin>", line 3, in <module>
+##IndexError: string index out of range
+##>>>
+##>>>
+##>>>
+##>>> tot
+##'imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn'
+##>>> a
+##['ifmanwas', 'meanttos', 'tayonthe', 'groundgo', 'dwouldha', 'vegivenu', 'sroots']
+##>>>
+##>>>
+##>>> tot = ''
+##>>>
+##>>> wat = 0
+##>>>
+##>>> for i in range(len(a)):
+##...     if len(a[i]) != 8:
+##...         a[i] = a[i] + " " * (8-len(a[i]))
+##...
+##... 
+##...
+##'sroots  '
+##//
