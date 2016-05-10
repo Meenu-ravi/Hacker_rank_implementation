@@ -1,0 +1,25 @@
+#!/bin/python
+
+import sys
+
+start = int(raw_input().strip())
+end = int(raw_input().strip())
+
+def kap(x):
+    if x == 1:
+        return 1
+    elif x > 8:
+        sq = x ** 2
+        sq_str = str(sq)
+        if int(sq_str[:len(sq_str)/2]) <= x and int(sq_str[:len(sq_str)/2])+ int(sq_str[len(sq_str)/2:]) == x:
+        #if int(sq_str[:len(sq_str)/2])+ int(sq_str[len(sq_str)/2:]) == x:
+            return x
+        else:
+            return None
+
+series = [x for x in range(start, end+1) if kap(x)]
+
+if len(series) > 0:
+    print ' '.join(map(str, series))
+else:
+    print "INVALID RANGE"
