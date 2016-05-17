@@ -1,0 +1,88 @@
+# Function to calculate the total number of elements in each layer
+def cal_tot(mat, top, bottom, left, right):
+
+    tot = 0
+    for i in range(top, bottom+1):
+        tot = tot + 1
+
+    for i in range(left, right+1):
+        tot = tot + 1
+
+    for i in range(bottom, top-1, -1):
+        tot = tot + 1
+
+    for i in range(right, left-1, -1):
+        tot = tot + 1
+
+    return tot-4
+    
+
+# Function to rotate a matrix
+def rotate_matrix(mat, r):
+      
+    """
+        top : starting row index
+        bottom : ending row index
+        left : starting column index
+        right : ending column index
+    """
+ 
+    top = 0
+    bottom = len(mat)-1
+ 
+    left = 0
+    right = len(mat[0])-1
+
+    while left < right and top < bottom:
+        #The following total calculation is done for each layer. So that when it needs to be rotated 'r' times and where 'r' is very large, we can take modulo of the number of times rotation
+        #and the total elements in the layer and rotate it those many times which will resemble to the 'r' times.
+        total = cal_tot(mat, top, bottom, left, right)
+        if total:
+            tot = r%total
+
+        for i in range(1, tot+1):
+        
+            #Store the current element of next row
+            prev = mat[top][left+1]
+
+            #Move the left column one step downwards
+            for i in range(top, bottom+1):
+                curr = mat[i][left]
+                mat[i][left] = prev
+                prev = curr                
+
+            #Move the bottom row one step rightwards
+            for i in range(left+1, right+1):
+                curr = mat[bottom][i]
+                mat[bottom][i] = prev
+                prev = curr
+                
+            #Move the right column one step upwards
+            for i in range(bottom-1, top-1, -1):
+                curr = mat[i][right]
+                mat[i][right] = prev
+                prev = curr
+
+            #Move the top row one step leftwards
+            for i in range(right-1, left-1, -1):
+                curr = mat[top][i]
+                mat[top][i] = prev
+                prev = curr
+            
+        left += 1
+        bottom -= 1
+        right -= 1
+        top += 1
+   
+    return mat
+
+# Utility Function
+def printMatrix(mat):
+    for row in mat:
+        print ' '.join(map(str, row)).strip()
+        
+m,n,r = map(int, raw_input().split())
+matrix = [map(int,raw_input().split()) for i in xrange(m)]
+matrix = rotate_matrix(matrix, r)
+# Print modified matrix
+printMatrix(matrix)
